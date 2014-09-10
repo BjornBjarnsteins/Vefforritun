@@ -1,0 +1,12 @@
+tr:nth-of-type(even) {
+  background:#CCC;
+}
+
+th {
+  background:#FFF;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
