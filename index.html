@@ -29,11 +29,253 @@
       </header>
       <section>
         <h1>
+<a name="verkefni-6" class="anchor" href="#verkefni-6"><span class="octicon octicon-link"></span></a><a href="http://bjornbjarnsteins.github.io/Vefforritun/v6/index.html">Verkefni 6</a>
+</h1>
+
+<h3>
+<a name="js" class="anchor" href="#js"><span class="octicon octicon-link"></span></a>JS</h3>
+
+<pre><code>$('form').submit(function (e) {
+  var form = $(this);
+
+  var name = form.find('input.name').val();
+  var email = form.find('input.email').val();
+  var address = form.find('input.address').val();
+  var gender = $('input[name=gender]:checked', form).val();
+
+  var mailingList = $('#mailing-list').is(':checked');
+  var comment = $('.comments').val();
+
+  var result = validate({name:    name,
+                         email:   email,
+                         address: address,
+                         gender:  gender})
+
+  e.preventDefault();
+});
+
+function validate(p) {
+  var list = $("div.results ul");
+
+  list.children().remove();
+
+  if (!p.name) {
+    $(".name").addClass("invalid");
+    $("&lt;li&gt;Vantar nafn&lt;/li&gt;").appendTo(list);
+  }
+
+  if (!p.email) {
+    $(".email").addClass("invalid");
+    $("&lt;li&gt;Vantar email&lt;/li&gt;").appendTo(list);
+  }
+
+  if (!p.address) {
+    $(".address").addClass("invalid");
+    $("&lt;li&gt;Vantar heimilisfang&lt;/li&gt;").appendTo(list);
+  }
+
+  var emailRE = /.+@.+\..+/;
+
+  if (!emailRE.exec(p.email)) {
+    $("&lt;li&gt;Póstfang skal vera á forminu [address]@[provider].[isp]&lt;/li&gt;").appendTo(list);
+  }
+
+  var addressRE = /^(\D)+ (\d)+$/;
+
+  if (!addressRE.exec(p.address)) {
+    $("&lt;li&gt;Heimilisfang skal vera á forminu [götuheiti] [húsnúmer]&lt;/li&gt;").appendTo(list);
+  }
+
+  if (!p.gender) {
+    $(".genderoption").parent().addClass("invalid");
+    $("&lt;li&gt;Vantar kyn&lt;/li&gt;").appendTo(list);
+  }
+
+  var numberOfErrors = list.children().length;
+
+  if (numberOfErrors === 0) {
+    list.removeClass("failure");
+    list.addClass("success");
+    list.text("Form submitted!");
+  }
+
+  list.show();
+}
+
+$('textarea').keyup(function (e) {
+  var wordCount = $('.wordcount');
+  var textArea = $(this);
+
+  var newWordCount = textArea.val().length;
+  var outputString = "Hámark 100 stafir. " + (100 - newWordCount) + " eftir.";
+
+  wordCount.text(outputString);
+});
+</code></pre>
+
+<h3>
+<a name="html" class="anchor" href="#html"><span class="octicon octicon-link"></span></a>HTML</h3>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang="is"&gt;
+    &lt;head&gt;
+        &lt;meta charset="utf-8"&gt;
+        &lt;title&gt;Vefforritun 2014 - Verkefni 6&lt;/title&gt;
+        &lt;link rel="stylesheet" href="v6.css"&gt;
+        &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;main&gt;
+            &lt;h1&gt;Skráning&lt;/h1&gt;
+            &lt;div class="results"&gt;
+                &lt;ul class="failure"&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+            &lt;form&gt;
+                &lt;div&gt;
+                    &lt;label for="name"&gt;Nafn: *&lt;/label&gt;
+                    &lt;input id="name" class="name" type="text" placeholder="John Johnson"&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                    &lt;label for="email"&gt;Netfang: *&lt;/label&gt;
+                    &lt;input id="email" class="email" type="text" placeholder="johnson@johnson.john"&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                    &lt;label for="address"&gt;Heimilisfang: *&lt;/label&gt;
+                    &lt;input id="address" class="address" type="text" placeholder="Johnson Blvd."&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                    &lt;label for="gender"&gt;Kyn: *&lt;/label&gt;
+                    &lt;div class="genderoption"&gt;
+                        &lt;input name="gender" id="gender" class="required" type="radio" value="karl"&gt;&lt;p&gt;Karl&lt;/p&gt;&lt;/input&gt;
+                        &lt;input name="gender" id="gender" class="required" type="radio" value="kona"&gt;&lt;p&gt;Kona&lt;/p&gt;&lt;/input&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div id="mailing-list"&gt;
+                    &lt;input id="mailing-list" class="mailing-list" type="checkbox"&gt;
+                    &lt;label for="mailing-list"&gt;Sendu mér kynningar á nýju efni&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div id="comments"&gt;
+                    &lt;label for="comments"&gt;Athugasemd:&lt;/label&gt;
+                    &lt;div id="textfield"&gt;
+                        &lt;textarea id="comments" class="comments" rows=5 maxlength=100&gt;&lt;/textarea&gt;
+                        &lt;p class="wordcount"&gt;Hámark 100 stafir; 100 eftir.&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;div&gt;
+                &lt;div id="submit"&gt;
+                    &lt;input type="submit" value="Senda"&gt;
+                &lt;/div&gt;
+            &lt;/form&gt;
+        &lt;/main&gt;
+        &lt;script src="v6.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3>
+<a name="css" class="anchor" href="#css"><span class="octicon octicon-link"></span></a>CSS</h3>
+
+<pre><code>* {
+  font-family: sans-serif;
+}
+
+.failure {
+  display: none;
+  border: 2px solid;
+  border-color: #EE2C2C;
+  background-color: #FFCCCB;
+  padding: 1em;
+}
+
+.success {
+  border: 2px solid;
+  border-color: #2C5D3F;
+  background-color: #00FF66;
+  padding: 1em;
+}
+
+label {
+  display: inline-flex;
+  padding: 5px;
+}
+
+.invalid {
+  border-color: #EE2C2C;
+  background-color: #FFCCCB;
+}
+
+main {
+  max-width: 400px;
+  margin: auto;
+}
+
+input[type=text] {
+  position: relative;
+  display: inline-flex;
+  float: right;
+  width: 200px;
+}
+
+
+div.genderoption {
+  display: inline-flex;
+  position: relative;
+  float: right;
+  width: 200px;
+  margin: auto;
+}
+
+div.genderoption input {
+  display: inline-flex;
+  margin: 5px 5px 5px auto;
+}
+
+div.genderoption p {
+  display: inline-flex;
+  margin: 5px;
+}
+
+#comments label {
+  position: relative;
+  display: inline-flex;
+  float: top;
+  margin: auto;
+  margin-bottom: 100px;
+}
+
+#textfield {
+  float: right;
+  width: 200px;
+}
+
+#textfield textarea {
+  width: 100%;
+}
+
+#textfield p {
+  margin-top: 0px;
+  font-size: 0.8em;
+  color: gray;
+}
+
+#submit {
+  display: relative;
+  margin: auto;
+  width: 100%;
+}
+
+#submit input {
+  float: left;
+  height: 2em;
+}
+</code></pre>
+
+<h1>
 <a name="verkefni-5" class="anchor" href="#verkefni-5"><span class="octicon octicon-link"></span></a><a href="http://bjornbjarnsteins.github.io/Vefforritun/v5/index.html">Verkefni 5</a>
 </h1>
 
 <h3>
-<a name="html" class="anchor" href="#html"><span class="octicon octicon-link"></span></a>HTML</h3>
+<a name="html-1" class="anchor" href="#html-1"><span class="octicon octicon-link"></span></a>HTML</h3>
 
 <pre><code>&lt;!doctype html&gt;
 &lt;html lang="is"&gt;
@@ -64,7 +306,7 @@
 </code></pre>
 
 <h3>
-<a name="css" class="anchor" href="#css"><span class="octicon octicon-link"></span></a>CSS</h3>
+<a name="css-1" class="anchor" href="#css-1"><span class="octicon octicon-link"></span></a>CSS</h3>
 
 <pre><code>* {
     font-family: sans-serif;
@@ -243,7 +485,7 @@ function renderStatus()
 </h1>
 
 <h3>
-<a name="html-1" class="anchor" href="#html-1"><span class="octicon octicon-link"></span></a>HTML</h3>
+<a name="html-2" class="anchor" href="#html-2"><span class="octicon octicon-link"></span></a>HTML</h3>
 
 <pre><code>&lt;!doctype html&gt;
 &lt;html&gt;
@@ -365,7 +607,7 @@ function renderStatus()
 </code></pre>
 
 <h3>
-<a name="css-1" class="anchor" href="#css-1"><span class="octicon octicon-link"></span></a>CSS</h3>
+<a name="css-2" class="anchor" href="#css-2"><span class="octicon octicon-link"></span></a>CSS</h3>
 
 <pre><code>.wrapper {
     position: absolute;
@@ -552,7 +794,7 @@ footer {
 </h1>
 
 <h3>
-<a name="html-2" class="anchor" href="#html-2"><span class="octicon octicon-link"></span></a>HTML</h3>
+<a name="html-3" class="anchor" href="#html-3"><span class="octicon octicon-link"></span></a>HTML</h3>
 
 <pre><code>&lt;!doctype html&gt;
 &lt;html&gt;
@@ -673,7 +915,7 @@ footer {
 </code></pre>
 
 <h3>
-<a name="css-2" class="anchor" href="#css-2"><span class="octicon octicon-link"></span></a>CSS</h3>
+<a name="css-3" class="anchor" href="#css-3"><span class="octicon octicon-link"></span></a>CSS</h3>
 
 <pre><code>.wrapper {
     position: absolute;
@@ -848,7 +1090,7 @@ footer {
 </h2>
 
 <h3>
-<a name="html-3" class="anchor" href="#html-3"><span class="octicon octicon-link"></span></a>HTML</h3>
+<a name="html-4" class="anchor" href="#html-4"><span class="octicon octicon-link"></span></a>HTML</h3>
 
 <pre><code>&lt;!doctype html&gt;
 &lt;html lang="is"&gt;
@@ -875,7 +1117,7 @@ footer {
 </code></pre>
 
 <h3>
-<a name="css-3" class="anchor" href="#css-3"><span class="octicon octicon-link"></span></a>CSS</h3>
+<a name="css-4" class="anchor" href="#css-4"><span class="octicon octicon-link"></span></a>CSS</h3>
 
 <pre><code>* {
   font-family: sans-serif;
@@ -907,7 +1149,7 @@ aside {
 </h2>
 
 <h3>
-<a name="html-4" class="anchor" href="#html-4"><span class="octicon octicon-link"></span></a>HTML</h3>
+<a name="html-5" class="anchor" href="#html-5"><span class="octicon octicon-link"></span></a>HTML</h3>
 
 <pre><code>&lt;!doctype html&gt;
 &lt;html lang="is"&gt;
@@ -983,7 +1225,7 @@ aside {
 </code></pre>
 
 <h3>
-<a name="css-4" class="anchor" href="#css-4"><span class="octicon octicon-link"></span></a>CSS</h3>
+<a name="css-5" class="anchor" href="#css-5"><span class="octicon octicon-link"></span></a>CSS</h3>
 
 <pre><code>tr:nth-of-type(even) {
   background:#CCC;
@@ -1005,7 +1247,7 @@ table, th, td {
 </h1>
 
 <h2>
-<a name="html-5" class="anchor" href="#html-5"><span class="octicon octicon-link"></span></a>HTML</h2>
+<a name="html-6" class="anchor" href="#html-6"><span class="octicon octicon-link"></span></a>HTML</h2>
 
 <pre><code>&lt;!doctype html&gt;
 &lt;html lang="is"&gt;
