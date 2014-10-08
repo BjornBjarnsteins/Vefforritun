@@ -1,0 +1,93 @@
+* {
+  font-family: sans-serif;
+}
+
+.failure {
+  display: none;
+  border: 2px solid;
+  border-color: #EE2C2C;
+  background-color: #FFCCCB;
+  padding: 1em;
+}
+
+.success {
+  border: 2px solid;
+  border-color: #2C5D3F;
+  background-color: #00FF66;
+  padding: 1em;
+}
+
+label {
+  display: inline-flex;
+  padding: 5px;
+}
+
+.invalid {
+  border-color: #EE2C2C;
+  background-color: #FFCCCB;
+}
+
+main {
+  max-width: 400px;
+  margin: auto;
+}
+
+input[type=text] {
+  position: relative;
+  display: inline-flex;
+  float: right;
+  width: 200px;
+}
+
+
+div.genderoption {
+  display: inline-flex;
+  position: relative;
+  float: right;
+  width: 200px;
+  margin: auto;
+}
+
+div.genderoption input {
+  display: inline-flex;
+  margin: 5px 5px 5px auto;
+}
+
+div.genderoption p {
+  display: inline-flex;
+  margin: 5px;
+}
+
+#comments label {
+  position: relative;
+  display: inline-flex;
+  float: top;
+  margin: auto;
+  margin-bottom: 100px;
+}
+
+#textfield {
+  float: right;
+  width: 200px;
+}
+
+#textfield textarea {
+  width: 100%;
+}
+
+#textfield p {
+  margin-top: 0px;
+  font-size: 0.8em;
+  color: gray;
+}
+
+#submit {
+  display: relative;
+  margin: auto;
+  width: 100%;
+}
+
+#submit input {
+  float: left;
+  height: 2em;
+}

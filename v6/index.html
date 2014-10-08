@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="is">
+	<head>
+		<meta charset="utf-8">
+		<title>Vefforritun 2014 - Verkefni 6</title>
+        <link rel="stylesheet" href="v6.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<main>
+            <h1>Skráning</h1>
+            <div class="results">
+                <ul class="failure">
+                </ul>
+            </div>
+            <form>
+                <div>
+                    <label for="name">Nafn: *</label>
+                    <input id="name" class="name" type="text" placeholder="John Johnson">
+                </div>
+                <div>
+                    <label for="email">Netfang: *</label>
+                    <input id="email" class="email" type="text" placeholder="johnson@johnson.john">
+                </div>
+                <div>
+                    <label for="address">Heimilisfang: *</label>
+                    <input id="address" class="address" type="text" placeholder="Johnson Blvd.">
+                </div>
+                <div>
+                    <label for="gender">Kyn: *</label>
+                    <div class="genderoption">
+                        <input name="gender" id="gender" class="required" type="radio" value="karl"><p>Karl</p></input>
+                        <input name="gender" id="gender" class="required" type="radio" value="kona"><p>Kona</p></input>
+                    </div>
+                </div>
+                <div id="mailing-list">
+                    <input id="mailing-list" class="mailing-list" type="checkbox">
+                    <label for="mailing-list">Sendu mér kynningar á nýju efni</label>
+                </div>
+                <div id="comments">
+                    <label for="comments">Athugasemd:</label>
+                    <div id="textfield">
+                        <textarea id="comments" class="comments" rows=5 maxlength=100></textarea>
+                        <p class="wordcount">Hámark 100 stafir; 100 eftir.</p>
+                    </div>
+                <div>
+                <div id="submit">
+                    <input type="submit" value="Senda">
+                </div>
+            </form>
+        </main>
+		<script src="v6.js"></script>
+	</body>
+</html>
