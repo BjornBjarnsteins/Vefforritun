@@ -10,6 +10,10 @@
   padding: 1em;
 }
 
+.failure li {
+  margin-left: 1em;
+}
+
 .success {
   border: 2px solid;
   border-color: #2C5D3F;

@@ -25,16 +25,22 @@ function validate(p) {
   if (!p.name) {
     $(".name").addClass("invalid");
     $("<li>Vantar nafn</li>").appendTo(list);
+  } else {
+    $(".name").removeClass("invalid");
   }
 
   if (!p.email) {
     $(".email").addClass("invalid");
     $("<li>Vantar email</li>").appendTo(list);
+  } else {
+    $(".email").removeClass("invalid");
   }
 
   if (!p.address) {
     $(".address").addClass("invalid");
     $("<li>Vantar heimilisfang</li>").appendTo(list);
+  } else {
+    $(".address").removeClass("invalid");
   }
 
   var emailRE = /.+@.+\..+/;
@@ -52,6 +58,8 @@ function validate(p) {
   if (!p.gender) {
     $(".genderoption").parent().addClass("invalid");
     $("<li>Vantar kyn</li>").appendTo(list);
+  } else {
+    $(".genderoption").parent().removeClass("invalid");
   }
 
   var numberOfErrors = list.children().length;
