@@ -20,7 +20,7 @@ $('form').submit(function (e) {
 function validate(p) {
   var list = $("div.results ul");
 
-  list.children().remove();
+  list.empty();
 
   if (!p.name) {
     $(".name").addClass("invalid");
@@ -60,6 +60,9 @@ function validate(p) {
     list.removeClass("failure");
     list.addClass("success");
     list.text("Form submitted!");
+  } else {
+    list.removeClass("success");
+    list.addClass("failure");
   }
 
   list.show();
@@ -71,8 +74,6 @@ $('textarea').keyup(function (e) {
 
   var newWordCount = textArea.val().length;
   var outputString = "Hámark 100 stafir. " + (100 - newWordCount) + " eftir.";
-
-  console.log(wordCount.text());
 
   wordCount.text(outputString);
 });
