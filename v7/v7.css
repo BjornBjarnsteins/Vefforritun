@@ -1,0 +1,32 @@
+* {
+    font-family: Arial, Sans-serif
+}
+
+main {
+    max-width: 400px;
+}
+
+li {
+    list-style-type: none;
+    list-style-position: outside;
+    border-bottom: medium ridge;
+    padding: 0.1em 0.5em 0.1em 0.5em;
+}
+
+.results {
+    padding-left: 0;
+}
+
+.results li:nth-child(even) {
+    background: #DDD;
+}
+
+input[type=text] {
+    width: 85%;
+    padding: 0.5em;
+}
+
+input[type=image] {
+    width: 5%;
+    padding-top: 0.5em;
+}
