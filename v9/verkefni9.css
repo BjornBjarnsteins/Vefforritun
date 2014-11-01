@@ -1,0 +1,24 @@
+* { margin: 0; padding: 0; }
+
+body { font: 16px/2em Verdana, sans-serif; }
+
+main { margin: 1em; max-width: 600px; }
+
+h1 { margin-bottom: 0.5em; }
+
+.todos { list-style: none; float: left; width: 100%; margin-bottom: 1em; }
+.todos li { width: 100%; }
+.todos li input { width: 32px; height: 32px; float: left; margin: 4px 0.5em 0 0;}
+.todos li label { float: left; width: 85%; overflow: hidden; text-overflow: ellipsis; }
+.todos li .delete { float: right; width: 15%; margin-top: 4px; border: none; background: #fff; }
+.todos li .delete input { width: 16px; height: 16px; }
+.todos li.finished label { color: #999; text-decoration: line-through; }
+
+.errors { list-style: none; margin-bottom: 1em; padding: 0.5em; border: 1px solid #c66; background: #fee;  }
+.errors ul { margin-left: 2em; }
+.errors li { margin-bottom: 0.5em; }
+
+.form { width: 100%; margin-top: 1em; float: left; }
+.form input { font-size: 1.5em; box-sizing: border-box; }
+.form input[type='text'] { width: 75%;  float: left; }
+.form input[type='submit'] { width: 24%; float: right; }
